@@ -14,15 +14,13 @@ import javax.persistence.Entity;
 @Entity(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-//@Data
+@Data
 public class User extends AbsEntity {
 
     @Column(nullable = false)
     private String fullName, username, password;
 
     private String email, phoneNumber;
-
-
 
 
 }

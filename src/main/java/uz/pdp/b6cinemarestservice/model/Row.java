@@ -21,7 +21,7 @@ public class Row extends AbsEntity {
     private Integer number;
 
 
-    @OneToMany(mappedBy = "row", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "row", cascade = {CascadeType.ALL})
     private List<Seat> seats;
 
     @ManyToOne
