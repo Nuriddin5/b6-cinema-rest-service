@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import uz.pdp.b6cinemarestservice.model.template.AbsEntity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class Movie extends AbsEntity {
     private Attachment posterImg;
 
     @Column(nullable = false)
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     private Double budget;
 
