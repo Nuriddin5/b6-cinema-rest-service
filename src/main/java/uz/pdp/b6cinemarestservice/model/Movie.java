@@ -30,11 +30,13 @@ public class Movie extends AbsEntity {
 
     private double ticketInitPrice;
 
+    @OneToOne() //todo optional = false
+    private Attachment coverImg;
+
     @Column(nullable = false)
     private String trailerVideoUrl; // ex. youtube link
 
-    @OneToOne(optional = false)
-    private Attachment posterImg;
+
 
     @Column(nullable = false)
     private LocalDate releaseDate;

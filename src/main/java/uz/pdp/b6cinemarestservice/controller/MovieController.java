@@ -3,15 +3,12 @@ package uz.pdp.b6cinemarestservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import uz.pdp.b6cinemarestservice.model.Cast;
-import uz.pdp.b6cinemarestservice.model.enums.CastType;
+import org.springframework.web.bind.annotation.*;
 import uz.pdp.b6cinemarestservice.service.interfaces.MovieService;
 
-import static uz.pdp.b6cinemarestservice.utils.Constants.*;
+import java.util.UUID;
+
+import static uz.pdp.b6cinemarestservice.utils.Constant.*;
 
 @RestController
 @RequestMapping("/api/movie")
@@ -29,11 +26,13 @@ public class MovieController {
             @RequestParam(name = "sort", defaultValue = "title") String sort,
             @RequestParam(name = "direction", defaultValue = "true") boolean direction
     ) {
-
-
-
-
         return movieService.getAllMovies(size, page, search, sort, direction);
+    }
+
+
+    @GetMapping("/{id}")
+    public HttpEntity getMovieById(@PathVariable UUID id){
+       return movieService.getMovieById(id);
     }
 
 }
