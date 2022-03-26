@@ -10,7 +10,7 @@ public interface CustomMovie {
 
     String getTitle();
 
-    UUID getPosterImgId();
+    UUID getCoverImgId();
 
     LocalDate getReleaseDate();
 

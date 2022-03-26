@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,11 @@ import uz.pdp.b6cinemarestservice.dto.MovieDto;
 import uz.pdp.b6cinemarestservice.model.Movie;
 import uz.pdp.b6cinemarestservice.payload.ApiResponse;
 import uz.pdp.b6cinemarestservice.projection.CustomMovie;
+import uz.pdp.b6cinemarestservice.projection.CustomMovieById;
 import uz.pdp.b6cinemarestservice.repository.MovieRepository;
 import uz.pdp.b6cinemarestservice.service.interfaces.MovieService;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -48,7 +51,9 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public HttpEntity getMovieById(UUID id) {
-        return null;
+        CustomMovieById movieById = movieRepository.getMovieById(id).orElseThrow(()
+                -> new ResourceNotFoundException("movie not found"));
+        return ResponseEntity.ok(new ApiResponse("success", true, movieById));
     }
 
     @Override
