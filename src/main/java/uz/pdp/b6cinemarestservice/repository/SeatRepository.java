@@ -3,6 +3,7 @@ package uz.pdp.b6cinemarestservice.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import uz.pdp.b6cinemarestservice.model.Seat;
+import uz.pdp.b6cinemarestservice.projection.AvailableSeatsProjection;
 
 import java.util.List;
 import java.util.UUID;
@@ -39,5 +40,5 @@ public interface SeatRepository extends JpaRepository<Seat, UUID> {
             "where t.status <> 'REFUNDED'\n" +
             "  and ms.id = :movieSessionId\n" +
             "order by rowNumber, seatNumber")
-    List<Seat> getAvailableSeatsBySessionId(UUID movieSessionId);
+    List<AvailableSeatsProjection> getAvailableSeatsBySessionId(UUID movieSessionId);
 }

@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity(name = "rows")
+@Entity(name = "h_rows")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
