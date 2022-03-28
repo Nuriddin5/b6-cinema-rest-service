@@ -12,9 +12,9 @@ import java.util.UUID;
 
 public interface CastRepository extends JpaRepository<Cast, UUID> {
 
-    @Query(nativeQuery = true, value = "SELECT " +
-            "cast(c.id as varchar) as id," +
-            " c.full_name as fullName \n" +
+    @Query(nativeQuery = true, value = "SELECT\n" +
+            "    cast(c.id as varchar) as id,\n" +
+            "    c.full_name as fullName\n" +
             "FROM casts c\n" +
             "         JOIN movies_casts mc\n" +
             "              on c.id = mc.casts_id\n" +

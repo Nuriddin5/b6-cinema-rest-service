@@ -37,4 +37,12 @@ public class Hall extends AbsEntity {
         this.name = name;
         this.vipAddFeeInPercent = vipAddFeeInPercent;
     }
+
+    @Override
+    public String toString() {
+        return "Hall{" +
+                "name='" + name + '\'' +
+                ", vipAddFeeInPercent=" + vipAddFeeInPercent +
+                '}';
+    }
 }

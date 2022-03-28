@@ -31,4 +31,12 @@ public class Row extends AbsEntity {
         this.number = number;
         this.hall = hall;
     }
+
+    @Override
+    public String toString() {
+        return "Row{" +
+                "number=" + number +
+                ", hall=" + hall +
+                '}';
+    }
 }
