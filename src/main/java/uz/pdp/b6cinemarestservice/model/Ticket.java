@@ -30,9 +30,15 @@ public class Ticket extends AbsEntity {
     private Double price;
 
     @Enumerated(EnumType.STRING)
-    private TicketStatus status;
+    private TicketStatus status = TicketStatus.NEW;
 
     @ManyToOne
     private User user;
 
+    public Ticket(MovieSession movieSession, Seat seat, Double price, User user) {
+        this.movieSession = movieSession;
+        this.seat = seat;
+        this.price = price;
+        this.user = user;
+    }
 }
