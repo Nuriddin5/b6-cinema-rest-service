@@ -3,6 +3,8 @@ package uz.pdp.b6cinemarestservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import uz.pdp.b6cinemarestservice.service.interfaces.MovieService;
 
@@ -31,8 +33,15 @@ public class MovieController {
 
 
     @GetMapping("/{id}")
-    public HttpEntity getMovieById(@PathVariable UUID id){
-       return movieService.getMovieById(id);
+    public HttpEntity getMovieById(@PathVariable UUID id) {
+        return movieService.getMovieById(id);
+    }
+
+    // TODO: 4/6/2022 add dto and implement this method
+    @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public HttpEntity saveMovie() {
+        return ResponseEntity.ok("New movie has been saved...!!");
     }
 
 }

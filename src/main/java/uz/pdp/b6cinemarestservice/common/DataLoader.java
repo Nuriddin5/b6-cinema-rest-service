@@ -1,19 +1,29 @@
 package uz.pdp.b6cinemarestservice.common;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import uz.pdp.b6cinemarestservice.model.*;
 import uz.pdp.b6cinemarestservice.repository.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @Component
 public class DataLoader implements CommandLineRunner {
+
+    @Autowired
+    RoleRepository roleRepo;
+
+    @Autowired
+    UserRepository userRepo;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     @Value("${spring.sql.init.mode}")
@@ -247,6 +257,37 @@ public class DataLoader implements CommandLineRunner {
                             hour13
                     )
             );
+
+
+            Role role_admin = roleRepo.save(new Role("ROLE_ADMIN"));
+            Role role_user = roleRepo.save(new Role("ROLE_USER"));
+
+            Set<Role> adminRoles = new HashSet<>();
+            adminRoles.add(role_admin);
+            adminRoles.add(role_user);
+
+            Set<Role> userRoles = new HashSet<>();
+            userRoles.add(role_user);
+
+            userRepo.save(new User(
+                    "Abror",
+                    "admin",
+                    passwordEncoder.encode("1"),
+                    "7abror7@gmail.com",
+                    "+998991919647",
+                    adminRoles
+            ));
+
+            userRepo.save(new User(
+                    "Avaz",
+                    "avaz",
+                    passwordEncoder.encode("1"),
+                    "avaz@gmail.com",
+                    "+998991111111",
+                    Collections.singleton(role_user)
+            ));
+
+
 
         }
     }
