@@ -16,33 +16,7 @@ public class B6CinemaRestServiceApplication {
 
 
     public static void main(String[] args) {
-
-
         SpringApplication.run(B6CinemaRestServiceApplication.class, args);
-
-
-        try {
-            TimerTask task = new TimerTask() {
-                @Override
-                public void run() {
-                    System.out.println("Task ishladi!!!" + new Date());
-
-                }
-            };
-
-
-            Timer timer = new Timer();
-
-
-            System.out.println("Started... " + new Date());
-
-
-
-
-            timer.schedule(task, 5000);
-            System.out.println("Next statement... " + new Date());
-        }catch (IllegalStateException e){
-        }
 
     }
 
